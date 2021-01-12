@@ -124,11 +124,30 @@ getCartTotal = ()=>{
   return cartTotal;
 }
 
+addProduct = ()=>{
+  firebase
+  .firestore()
+  .collection('products')
+  .add({
+    img:'https://images.unsplash.com/photo-1515054562254-30a1b0ebe227?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80',
+    price:5999,
+    qty:3,
+    title:'Earpods'
+  })
+  .then((docRef)=>{
+    console.log('product has been added to firebase', docRef);
+  })
+  .catch((error)=>{
+    console.log('error in adding product in firebase', error);
+  })
+}
+
   render(){
     const {products, loading} = this.state;
     return (
       <div className="App">
         <Navbar count={this.getCartCount()} />
+        <button style={{padding:20,fontSize:20,marginLeft:600}} onClick={this.addProduct}>Add a Product</button>
         <Cart 
           products={products}
           onIncreaseQuantity = {this.handleIncreaseQuantity}
