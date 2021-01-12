@@ -45,6 +45,8 @@ componentDidMount(){
   firebase
   .firestore()
   .collection('products')
+  // .where('price','==', 999)
+  // .where('title','==','Watch')
   .onSnapshot((snapshot)=>{
     console.log(snapshot);
 
@@ -179,12 +181,40 @@ getCartTotal = ()=>{
 //   })
 // }
 
+// sortByPrice=()=>{
+//   firebase
+//   .firestore()
+//   .collection('products')
+//   .orderBy('price')
+//   .onSnapshot((snapshot)=>{
+//     console.log(snapshot);
+
+//   snapshot.docs.map((doc)=>{
+//     console.log(doc.data());
+//     return '';
+//   });
+
+//   const products = snapshot.docs.map((doc)=>{
+//     const data = doc.data();
+//     data['id'] = doc.id;
+//     return data;
+//   })
+
+//   this.setState({
+//     products:products,
+//     loading:false
+//   })
+// })
+// }
+
+
   render(){
     const {products, loading} = this.state;
     return (
       <div className="App">
         <Navbar count={this.getCartCount()} />
-        {/* <button style={{padding:20,fontSize:20,marginLeft:600}} onClick={this.addProduct}>Add a Product</button> */}
+        {/* <button style={{padding:20,fontSize:20}} onClick={this.addProduct}>Add a Product</button> */}
+        {/* <button style={{padding:10,fontSize:20}} onClick={this.sortByPrice}>Sort By Price</button> */}
         <Cart 
           products={products}
           onIncreaseQuantity = {this.handleIncreaseQuantity}
