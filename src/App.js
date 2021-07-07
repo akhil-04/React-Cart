@@ -121,7 +121,7 @@ handleDecreaseQuantity = (product)=>{
 }
 
 handleDeleteProduct = (id)=>{
-    const {products} = this.state;
+    // const {products} = this.state;
 
     const docRef = firebase.firestore().collection('products').doc(id);
 
